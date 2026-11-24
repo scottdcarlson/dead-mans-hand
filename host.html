@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Host desk · Dead Man’s Hand</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f2e8;color:#182f28;font:1.055rem/1.55 "DM Sans",system-ui,sans-serif}header{background:#12382f;color:#fff5dd;padding:1rem max(5vw,calc((100vw - 760px)/2));font:1.1rem Georgia,serif}header span{color:#edc982}main{width:min(94%,760px);margin:1.4rem auto 4rem}h1,h2{font-family:Georgia,serif;line-height:1.12;margin:.4rem 0 1rem}h1{font-size:clamp(2.35rem,6vw,3.7rem);font-weight:500}h2{font-size:clamp(1.7rem,4vw,2.15rem);font-weight:500}h3{font-size:1.05rem;margin:1.25rem 0 .3rem}p{margin:.45rem 0 1.1rem}.paper{border:1px solid #cdc4ac;background:#fffcf3;border-radius:.55rem;padding:clamp(1rem,4vw,2rem)}.tag{font-size:.84rem;color:#665027;letter-spacing:.06em;text-transform:uppercase;font-weight:700}.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin:0 0 1rem}.clock{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}button{border:1px solid #718477;background:transparent;color:#143c2f;font:600 1rem/1.2 inherit;font-family:inherit;font-size:1rem;font-weight:600;padding:.7rem 1rem;border-radius:.35rem;min-height:44px;cursor:pointer}.primary{background:#154536;color:white;border-color:#154536}button:hover{box-shadow:inset 0 0 0 1px currentColor}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #ae7422;outline-offset:3px}.actions{display:flex;gap:.65rem;flex-wrap:wrap;margin:1.3rem 0 .3rem}blockquote{border-left:4px solid #b4843c;background:#f1ebda;margin:.5rem 0 1rem;padding:.8rem 1rem;font:1.23rem/1.45 Georgia,serif}label{display:flex;align-items:flex-start;gap:.7rem;padding:.65rem 0;border-bottom:1px solid #e7dfce}input{width:1.25rem;height:1.25rem;flex-shrink:0;margin-top:.18rem;accent-color:#16503d}a{color:#17543f;text-underline-offset:.16em}details{margin:1rem 0}summary{cursor:pointer;min-height:44px;padding:.6rem 0;font-weight:600}li{margin:.35rem 0}code{display:block;width:fit-content;border:1px dashed #927438;padding:.45rem .8rem;background:#f5e4bd;letter-spacing:.03em;font:700 1.35rem/1.3 ui-monospace,monospace}#storage{color:#7e3020}.minor{font-size:.92rem;color:#455b51}dialog{max-width:min(92vw,29rem);border:1px solid #8d9e91;border-radius:.55rem;color:inherit;background:#fffcf3}dialog::backdrop{background:#122a2288}[hidden]{display:none!important}button:disabled{opacity:.45;cursor:default}@media(max-width:520px){.paper{padding:1rem}.actions .primary{flex:1}.bar{gap:.5rem}}
+</style></head>
+<body><header><span aria-hidden="true">♠</span> Last Chance Casino</header>
+<main><h1>Host desk</h1><p id="storage" hidden role="status"></p><section id="desk" class="paper" aria-live="polite"><h2>Open your host invitation</h2><p>Use the <strong>Open host controls</strong> link in the hosts’ shared Google Doc.</p><a href="./">Go to the player site</a></section></main>
+<dialog id="reset-dialog"><h2>Reset this run?</h2><p>This clears the timer, cue position, and setup checks on this browser.</p><div class="actions"><button id="cancel-reset" class="primary">Keep this run</button><button id="confirm-reset">Reset run</button></div></dialog>
+<script>
+'use strict';
+const sealed='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';
+const desk=document.getElementById('desk');
+const dialog=document.getElementById('reset-dialog');
+const storageKey='dmh-host-run-v1';
+let game, run;
+const blank=()=>({started:0,ended:0,step:-1,checked:[]});
+function loadRun(){
+ try{
+  const x=JSON.parse(localStorage.getItem(storageKey)||'null');
+  if(x && Number.isFinite(x.started) && x.started>=0 && Number.isFinite(x.ended) && x.ended>=0 && Number.isInteger(x.step) && x.step>=-1 && x.step<game.cues.length && Array.isArray(x.checked))return x;
+ }catch{}
+ return blank();
+}
+function save(){
+ try{localStorage.setItem(storageKey,JSON.stringify(run))}
+ catch{const label=document.getElementById('storage');label.hidden=false;label.textContent='This browser cannot save progress. Keep this tab open for the party.'}
+}
+function element(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e}
+function button(text,action,primary){const b=element('button',text,primary?'primary':'');b.type='button';b.onclick=action;return b}
+function setCue(index){run.step=index;save();render(true)}
+function elapsed(){const total=Math.max(0,Math.floor(((run.ended||Date.now())-run.started)/1000));return Math.floor(total/60)+'m '+String(total%60).padStart(2,'0')+'s'}
+function clockTick(){const clock=document.getElementById('clock');if(clock)clock.textContent=elapsed()}
+function toolsPanel(){
+ const details=element('details');details.append(element('summary','Run options'));
+ const startOver=button('Reset this run',()=>dialog.showModal());
+ const guest=element('a','Open guest site');guest.href='./';guest.target='_blank';guest.rel='noopener noreferrer';
+ details.append(guest,element('p'),startOver);return details;
+}
+function render(focus){
+ desk.replaceChildren();desk.removeAttribute('aria-live');
+ let heading;
+ if(run.step===-1){
+  heading=element('h2','Before guests arrive');desk.append(heading,element('p','Use one phone or computer for the night. You move the cues when the room is ready. The timer starts when you open the casino.'));
+  game.checks.forEach((item,i)=>{const label=element('label');const check=element('input');check.type='checkbox';check.checked=run.checked.includes(i);check.onchange=()=>{run.checked=run.checked.filter(x=>x!==i);if(check.checked)run.checked.push(i);save()};label.append(check,element('span',item));desk.append(label)});
+  const actions=element('div',undefined,'actions');actions.append(button('Start casino hour',()=>{run.started=Date.now();run.ended=0;setCue(0)},true));desk.append(actions,toolsPanel());
+ }else{
+  const cue=game.cues[run.step],bar=element('div',undefined,'bar'),clock=element('span',elapsed(),'clock');
+  clock.id='clock';const timeLabel=element('span',run.ended?'Final time · ':'Elapsed · ');timeLabel.append(clock);
+  bar.append(element('span','Cue '+(run.step+1)+' of '+game.cues.length+' · Minute '+cue.at,'tag'),timeLabel);desk.append(bar);
+  heading=element('h2',cue.name);desk.append(heading,element('p',cue.action));
+  if(cue.say){desk.append(element('h3','Say aloud'),element('blockquote',cue.say));if(cue.after)desk.append(element('blockquote',cue.after))}
+  if(cue.code){desk.append(element('h3','Announce this code'),element('code',cue.code))}
+  if(cue.hint)desk.append(element('p',cue.hint,'minor'));
+  if(cue.reveal||cue.score){const fold=element('details');fold.append(element('summary',cue.reveal?'Show final reveal':'Show scoring key'));for(const line of cue.reveal||cue.score)fold.append(element('p',line));desk.append(fold)}
+  const controls=element('div',undefined,'actions');
+  if(run.step>0)controls.append(button('Previous cue',()=>setCue(run.step-1)));
+  if(run.step<game.cues.length-1)controls.append(button('Next cue',()=>setCue(run.step+1),true));
+  else if(!run.ended)controls.append(button('Finish game',()=>{run.ended=Date.now();save();render(true)},true));
+  desk.append(controls);
+  const next=game.cues[run.step+1];
+  if(next)desk.append(element('p','Up next at minute '+next.at+' · '+next.name,'minor'));
+  else if(run.ended)desk.append(element('p','Game complete. The timer has stopped.','minor'));
+  desk.append(toolsPanel());
+ }
+ if(focus){heading.tabIndex=-1;heading.focus({preventScroll:true});window.scrollTo(0,0)}
+}
+document.getElementById('cancel-reset').onclick=()=>dialog.close();
+document.getElementById('confirm-reset').onclick=()=>{dialog.close();run=blank();save();render(true)};
+async function openHost(){
+ const fragment=location.hash.slice(1);
+ if(!/^[A-Za-z0-9_-]{43}$/.test(fragment))return;
+ try{
+  const decode=val=>Uint8Array.from(atob(val),c=>c.charCodeAt(0));
+  const key=await crypto.subtle.importKey('raw',decode(fragment.replace(/-/g,'+').replace(/_/g,'/')),'AES-GCM',false,['decrypt']);
+  const bytes=decode(sealed);
+  const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12)},key,bytes.slice(12));
+  game=JSON.parse(new TextDecoder().decode(clear));
+  run=loadRun();render(false);setInterval(clockTick,1000);
+ }catch{desk.firstElementChild.textContent='Reopen your host invitation';desk.querySelector('p').textContent='This link did not open the controls. Use the full link in the hosts’ shared Google Doc.'}
+}
+openHost();
+</script></body></html>
